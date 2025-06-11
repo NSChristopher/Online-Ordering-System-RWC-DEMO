@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
-  register: (email: string, username: string, password: string) => Promise<void>;
+  register: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   loading: boolean;
 }
@@ -57,9 +57,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const register = async (email: string, username: string, password: string) => {
+  const register = async (email: string, password: string) => {
     try {
-      const response = await api.post('/auth/register', { email, username, password });
+      const response = await api.post('/auth/register', { email, password });
       setUser(response.data.user);
       toast.success('Registration successful!');
     } catch (error: any) {

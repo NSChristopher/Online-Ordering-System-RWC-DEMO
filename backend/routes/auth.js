@@ -27,20 +27,19 @@ const authenticateToken = (req, res, next) => {
 // Register
 router.post('/register', async (req, res) => {
   try {
-    const { email, username, password } = req.body;
+    const { email, password } = req.body;
 
     // Check if user already exists
     const existingUser = db.user.findFirst({
       where: {
         OR: [
-          { email },
-          { username }
+          { email }
         ]
       }
     });
 
     if (existingUser) {
-      return res.status(400).json({ error: 'User already exists with this email or username' });
+      return res.status(400).json({ error: 'User already exists with this email' });
     }
 
     // Hash password
@@ -49,13 +48,18 @@ router.post('/register', async (req, res) => {
     // Create user
     const user = db.user.create({
       email,
-      username,
-      password: hashedPassword
+      passwordHash: hashedPassword
+    });
+
+    // Create a default store for the user
+    const store = db.store.create({
+      ownerId: user.id,
+      name: 'My Store'
     });
 
     // Generate JWT token
     const token = jwt.sign(
-      { userId: user.id, email: user.email, username: user.username },
+      { userId: user.id, email: user.email },
       JWT_SECRET,
       { expiresIn: '7d' }
     );
@@ -72,8 +76,7 @@ router.post('/register', async (req, res) => {
       message: 'User created successfully',
       user: {
         id: user.id,
-        email: user.email,
-        username: user.username
+        email: user.email
       }
     });
   } catch (error) {
@@ -97,14 +100,14 @@ router.post('/login', async (req, res) => {
     }
 
     // Check password
-    const validPassword = await bcrypt.compare(password, user.password);
+    const validPassword = await bcrypt.compare(password, user.passwordHash);
     if (!validPassword) {
       return res.status(400).json({ error: 'Invalid credentials' });
     }
 
     // Generate JWT token
     const token = jwt.sign(
-      { userId: user.id, email: user.email, username: user.username },
+      { userId: user.id, email: user.email },
       JWT_SECRET,
       { expiresIn: '7d' }
     );
@@ -121,8 +124,7 @@ router.post('/login', async (req, res) => {
       message: 'Login successful',
       user: {
         id: user.id,
-        email: user.email,
-        username: user.username
+        email: user.email
       }
     });
   } catch (error) {
@@ -146,7 +148,6 @@ router.get('/me', authenticateToken, async (req, res) => {
       user: {
         id: user.id,
         email: user.email,
-        username: user.username,
         createdAt: user.createdAt
       }
     });

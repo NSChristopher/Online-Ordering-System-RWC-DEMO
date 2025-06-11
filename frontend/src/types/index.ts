@@ -1,19 +1,22 @@
 export interface User {
   id: number;
   email: string;
-  username: string;
   createdAt?: string;
 }
 
-export interface Post {
+export interface Store {
   id: number;
-  title: string;
-  content?: string;
-  published: boolean;
-  authorId: number;
-  author: User;
-  createdAt: string;
-  updatedAt: string;
+  ownerId: number;
+  name: string;
+}
+
+export interface MenuItem {
+  id: number;
+  storeId: number;
+  name: string;
+  price: number;
+  description?: string;
+  imageUrl?: string;
 }
 
 export interface AuthResponse {
@@ -21,14 +24,16 @@ export interface AuthResponse {
   user: User;
 }
 
-export interface CreatePostData {
-  title: string;
-  content?: string;
-  published?: boolean;
+export interface CreateMenuItemData {
+  name: string;
+  price: number;
+  description?: string;
+  imageUrl?: string;
 }
 
-export interface UpdatePostData {
-  title?: string;
-  content?: string;
-  published?: boolean;
+export interface UpdateMenuItemData {
+  name?: string;
+  price?: number;
+  description?: string;
+  imageUrl?: string;
 }

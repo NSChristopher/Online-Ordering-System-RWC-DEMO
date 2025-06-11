@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAuth } from '@/hooks/useAuth';
+import { UtensilsCrossed } from 'lucide-react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -31,10 +32,13 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>Login</CardTitle>
+        <CardHeader className="text-center">
+          <div className="flex justify-center mb-2">
+            <UtensilsCrossed className="h-12 w-12 text-blue-600" />
+          </div>
+          <CardTitle>Store Owner Login</CardTitle>
           <CardDescription>
-            Enter your credentials to access your account
+            Access your restaurant dashboard and manage your menu
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -46,6 +50,7 @@ const Login = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
                 required
                 disabled={loading}
               />
@@ -57,19 +62,20 @@ const Login = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
                 required
                 disabled={loading}
               />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Logging in...' : 'Login'}
+              {loading ? 'Logging in...' : 'Login to Dashboard'}
             </Button>
           </form>
           <div className="mt-4 text-center">
             <p className="text-sm text-gray-600">
               Don't have an account?{' '}
               <Link to="/register" className="text-blue-600 hover:underline">
-                Register here
+                Create store account
               </Link>
             </p>
           </div>

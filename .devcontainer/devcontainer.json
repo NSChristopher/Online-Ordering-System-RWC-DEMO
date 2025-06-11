@@ -4,7 +4,7 @@
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
-  "postCreateCommand": "cd frontend && npm install && cd ..",
+  "postCreateCommand": "npm install",
   "customizations": {
     "vscode": {
       "extensions": [

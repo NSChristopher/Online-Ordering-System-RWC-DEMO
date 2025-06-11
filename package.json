@@ -1,7 +1,7 @@
 {
   "name": "Online-Ordering-System-RWC-DEMO",
   "version": "1.0.0",
-  "description": "A complete full-stack app with React, Express, and Prisma",
+  "description": "A complete online ordering system with React, Express, and Prisma",
   "scripts": {
     "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
     "backend:dev": "cd backend && npm run dev",
@@ -22,7 +22,9 @@
     "express",
     "prisma",
     "jwt",
-    "template"
+    "online-ordering",
+    "restaurant",
+    "menu-management"
   ],
   "author": "Noah Christopher",
   "license": "MIT"

@@ -49,5 +49,3 @@ process.on("SIGINT", async () => {
   db.$disconnect();
   process.exit(0);
 });
-
-module.exports = app;

@@ -1,5 +1,5 @@
 {
-  "name": "Full Stack Template",
+  "name": "Online Ordering System",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {}

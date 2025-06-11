@@ -4,14 +4,16 @@
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
-  "postCreateCommand": "npm install",
+  "postCreateCommand": "cd frontend && npm install && cd ..",
   "customizations": {
     "vscode": {
       "extensions": [
         "bradlc.vscode-tailwindcss",
         "ms-vscode.vscode-typescript-next",
         "esbenp.prettier-vscode",
-        "Prisma.prisma"
+        "Prisma.prisma",
+        "vstirbu.vscode-mermaid-preview",
+        "bierner.markdown-mermaid"
       ],
       "settings": {
         "editor.formatOnSave": true,

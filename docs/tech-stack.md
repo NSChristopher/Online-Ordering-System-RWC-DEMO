@@ -1,9 +1,3 @@
-# Copilot Instructions
-
-This project is a fullstack template for rapid agentic development. Please follow these instructions to contribute effectively.
-
----
-
 ## 🚀 The Stack
 
 - **Frontend:** React 18 + Vite + Tailwind CSS
@@ -33,6 +27,8 @@ my-app/
 │ ├── src/pages/ # Main pages (Home, Login, etc)
 │ └── src/App.tsx
 ├── agent/ # Agent prompts & scripts
+├── docs/ # Project documentation (tech stack, etc)
+├── planning/ # Planning docs (API, schema, user stories, UI images)
 ├── README.md
 └── .env.example
 
@@ -55,13 +51,3 @@ my-app/
 - [Axios](https://axios-http.com/)
 - [Codespaces](https://docs.github.com/en/codespaces)
 - [Copilot Agent/MCP](https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-with-mcp)
-
----
-
-## 🧠 Useful Guidelines
-
-- **Always check the documentation** for each tool or library before implementing or changing code.
-- **Double-check breaking changes or updates** (especially for dependencies in `package.json`).
-- **Use clear commit messages** describing your changes for both agents and humans.
-- **Write readable code and add comments**—prioritize clarity for future contributors and agentic reasoning.
-- **Test CRUD flows after any backend or frontend update** (registration, login, CRUD, etc).

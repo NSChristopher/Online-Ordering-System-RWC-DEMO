@@ -6,6 +6,8 @@ const db = require("./db");
 // Import routes
 const authRoutes = require("./routes/auth");
 const postRoutes = require("./routes/posts");
+const menuRoutes = require("./routes/menu");
+const orderRoutes = require("./routes/orders");
 // const workoutRoutes = require("./routes/workouts"); // Temporarily disabled due to Prisma dependency
 
 const app = express();
@@ -24,6 +26,8 @@ app.use(cookieParser());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
+app.use("/api/menu", menuRoutes);
+app.use("/api/orders", orderRoutes);
 // app.use("/api/workouts", workoutRoutes); // Temporarily disabled due to Prisma dependency
 
 // Health check endpoint
@@ -40,6 +44,9 @@ app.use((err, req, res, next) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
+  
+  // Seed sample data for demo
+  db.seedSampleData();
 });
 
 // Graceful shutdown
